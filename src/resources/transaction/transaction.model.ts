@@ -14,6 +14,8 @@ const TransactionSchema = new Schema({
   amount: {
     type: Number,
     require: true,
+    default: 0,
+    min: 0,
   }, 
   customerId: {
     type: Schema.Types.ObjectId,

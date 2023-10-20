@@ -6,10 +6,14 @@ const CustomerSchema = new Schema({
   customerId: {
     type: String,
     require: true,
+    minLength: 8,
+    maxLength: 20
   },
   password: {
     type: String,
     require: true,
+    minLength: 8,
+    maxLength: 20
   },
   name: {
     type: String,
@@ -21,7 +25,8 @@ const CustomerSchema = new Schema({
   balance: {
     type: Number,
     require: true,
-    default: 0
+    default: 0,
+    min: 0,
   },
 }, {
   timestamps: true,

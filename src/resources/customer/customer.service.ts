@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
+import { Schema } from 'mongoose';
 import HttpException from '@/utils/exceptions/http.exception';
 import tokenUtil from '@/utils/token';
+import Transaction from '../transaction/transaction.interface';
 import transactionModel from '../transaction/transaction.model';
 import Customer from './customer.interface';
 import customerModel from './customer.model';
@@ -43,20 +45,24 @@ class CustomerService {
           as: 'transaction'
         }
       },
-      {
-        $project: {
-          customerId: 1,
-          name: 1,
-          last_login: 1,
-          balance: 1,
-          "transaction.createdAt": 1,
-          "transaction.desc": 1,
-          "transaction.amount": 1
-        }
-      },
     ])
     
-    return detail;
+    return {
+      success: true,
+      customer: {
+        id: detail[0].customerId,
+        name: detail[0].name,
+        last_login: detail[0].last_login,
+        balance: detail[0].balance,
+        transaction: detail[0].transaction.map((item: { createdAt: any; desc: any; amount: any; }) => {
+          return {
+            date: item.createdAt,
+            desc: item.desc,
+            amount: item.amount
+          }
+        })
+      }
+    };
   }
 }
 

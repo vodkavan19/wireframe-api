@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "author": "",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "engines": {
     "node": "18.x"
   },
@@ -27,7 +27,8 @@
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "mongoose": "^7.6.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "tsc-watch": "^6.0.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
@@ -42,7 +43,6 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.3",
-    "tsc-watch": "^6.0.4",
     "typescript": "^5.2.2"
   },
   "_moduleAliases": {

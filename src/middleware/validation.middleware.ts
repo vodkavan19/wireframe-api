@@ -14,8 +14,14 @@ function validationMiddleware(schema: Joi.Schema): RequestHandler {
     };
 
     try {
-      const validate = await schema.validateAsync(req.body, validationOptions);
-      req.body = validate;
+      if(Object.keys(req.body).length !== 0) {
+        const validate = await schema.validateAsync(req.body, validationOptions);
+        req.body = validate;
+      }
+      if(Object.keys(req.query).length !== 0) {
+        const validate = await schema.validateAsync(req.query, validationOptions);
+        req.query = validate;
+      }
       next();
     } catch (e: any) {
       const errors: string[] = [];

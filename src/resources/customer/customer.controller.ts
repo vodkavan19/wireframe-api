@@ -51,9 +51,9 @@ class CustomerController implements Controller {
     res: Response,
     next: NextFunction,
   ): Promise<Response | void> => {
-    const { customerid } = req.body; 
+    const { customerid } = req.query; 
 
-    const result = await this.customerService.getDetail(customerid)
+    const result = await this.customerService.getDetail(customerid as string)
 
     res.status(200).send(result);
   };
